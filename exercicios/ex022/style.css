@@ -1,15 +1,28 @@
 body{
+    
     height: 100vh;
+     /*
     background-color: black;
     background-image: url(imagens-cap19/wallpaper002.jpg);
     background-position: center center;
     background-repeat: no-repeat;
+    
+    background-attachment: fixed;
+
+   
+    Shorthand - background
+    color > image > position > repeat > [size] > attachment
+
+    o size não funciona na shorthand, por isso devemos usar fora, embora a w3c diga que funciona, ele não funcionou.
+    */
+
+    background: black url(imagens-cap19/wallpaper002.jpg) center center no-repeat fixed;
     background-size: cover;
 }
 
 main{
     background-color: white;
-    width: 400px;
+    max-width: 400px;
     padding: 10px;
     margin: auto;
     border: 1px solid darkblue;
