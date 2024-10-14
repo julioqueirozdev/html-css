@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox</title>
+    <style>
+        div.container{
+            background-color: black;
+            display: flex;
+            flex-flow: row wrap;
+        }
+
+        div.filho{
+            background-color: green;
+            border: 1px solid black;
+            /* flex: auto; */
+            flex-basis: 250px;
+            flex-grow: 1;
+            flex-shrink: 1;
+            text-align: center;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="filho">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab necessitatibus, culpa doloremque molestias dolore soluta neque, sit exercitationem iste unde veritatis quisquam, expedita nobis amet perferendis? Neque amet minima soluta!</div>
+        <div class="filho">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere hic minima nostrum tempore, reiciendis, est unde adipisci dolore aut neque sed provident, qui repellendus alias quam quo nam amet eaque! 
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sequi vitae similique ut amet libero facilis, tenetur maxime distinctio inventore ipsum debitis, odit animi esse unde saepe. Autem molestiae modi quo.
+        </div>
+        <div class="filho">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo autem laborum fugit eius, ex adipisci voluptas corporis sequi! Dolorem nisi pariatur voluptatem. Suscipit ad expedita saepe nihil commodi, enim consequuntur!
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. At unde enim, aliquid deserunt dolorum, cum aut placeat vitae aliquam qui optio in magnam dolorem libero eius minima earum, pariatur esse.
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia aspernatur recusandae, explicabo beatae accusamus blanditiis quibusdam exercitationem illo eos! Blanditiis consectetur neque illum expedita! Molestiae minima quod repellat a soluta?
+        </div>
+    </div>
+</body>
+</html>
