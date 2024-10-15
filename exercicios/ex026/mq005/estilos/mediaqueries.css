@@ -13,6 +13,7 @@ grandes telas: acima de 1200px
     span#burguer{
         display:none;
     }
+    
     menu{
         display: block;
     }
