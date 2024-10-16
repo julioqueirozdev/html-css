@@ -30,6 +30,13 @@ header> nav{
 }
 
 header > nav > a{
-    width: 90vw;
+    width: 100vw;
+    display: block;
+    margin: 0;
+    border: 1px solid white;
+}
+
+header > nav > a:hover{
+    border: 1px solid black;
 }
 
