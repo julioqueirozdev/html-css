@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>Treino Hipertrofia PDF</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+<button id="gerarPdf">Gerar PDF do Treino</button>
+
+<script>
+  const { jsPDF } = window.jspdf;
+
+  const treino = [
+    { dia: "Segunda - Peito, Ombros, Tríceps e Abdômen", exercicios: [
+      { nome: "Supino reto com barra", desc: "4x6-8, Peitoral médio, deltoide anterior, tríceps" },
+      { nome: "Supino inclinado com halteres", desc: "4x8-10, Peitoral superior, deltoide anterior, tríceps" },
+      { nome: "Crossover (cabos altos)", desc: "3x12-15, Peitoral maior (porção inferior)" },
+      { nome: "Desenvolvimento com halteres", desc: "4x8-10, Deltoide anterior e medial, tríceps (secundário)" },
+      { nome: "Elevação lateral + frontal com halteres (superset)", desc: "3x12 cada, Deltoide medial + anterior" },
+      { nome: "Tríceps testa com barra W + Coice (superset)", desc: "3x10-12, Tríceps braquial (geral)" },
+      { nome: "Tríceps corda (drop set triplo)", desc: "3x12/10/8, Tríceps (ênfase em falha muscular)" },
+      { nome: "Abdominal infra na barra", desc: "3x15-20" },
+      { nome: "Prancha com carga", desc: "3x até falha" },
+    ]},
+    { dia: "Terça - Posterior de Coxa, Glúteo e Panturrilha", exercicios: [
+      { nome: "Mesa flexora (leg curl deitada)", desc: "3x12 (drop set última série)" },
+      { nome: "Stiff na máquina Smith", desc: "4x8, fase excêntrica lenta com 1-2s de pausa no ponto mais baixo, joelhos levemente flexionados, coluna neutra" },
+      { nome: "Cadeira flexora (leg curl sentado)", desc: "3x12 (rest-pause última série)" },
+      { nome: "Elevação pélvica (hip thrust/glute bridge)", desc: "4x10-12, isometria 3s no topo + drop set última série" },
+      { nome: "Cadeira abdutora", desc: "3x20, fase excêntrica lenta e controlada" },
+      { nome: "Agachamento búlgaro com halteres", desc: "3x10-12 por perna, pausa 1-2s no ponto baixo última série" },
+      { nome: "Panturrilha no leg press (unilateral ou bilateral)", desc: "4x15-20, foco em amplitude e contração máxima" },
+    ]},
+    { dia: "Quarta - Costas, Bíceps, Deltoide Posterior e Abdômen", exercicios: [
+      { nome: "Barra fixa (com carga se possível)", desc: "4x6-10" },
+      { nome: "Remada curvada com barra", desc: "4x8-10" },
+      { nome: "Puxada aberta frontal", desc: "3x10-12" },
+      { nome: "Remada unilateral com halter", desc: "3x12 por lado" },
+      { nome: "Face Pull (polia alta)", desc: "3x12-15" },
+      { nome: "Rosca direta com barra", desc: "3x8-10" },
+      { nome: "Rosca alternada com supinação + martelo", desc: "3x10-12" },
+      { nome: "Abdominal na polia alta", desc: "3x15-20" },
+      { nome: "Prancha com elevação de perna", desc: "3x30s por lado" },
+    ]},
+    { dia: "Quinta - Quadríceps e Panturrilha", exercicios: [
+      { nome: "Cadeira adutora", desc: "3x15-20" },
+      { nome: "Agachamento livre", desc: "4x6-8" },
+      { nome: "Agachamento hack", desc: "4x8-10" },
+      { nome: "Leg press 45°", desc: "4x10-12" },
+      { nome: "Cadeira extensora", desc: "3x15-20" },
+      { nome: "Panturrilha (em pé ou sentado)", desc: "4x15-20" },
+    ]},
+    { dia: "Sexta - Peito, Ombros, Tríceps e Abdômen (variação)", exercicios: [
+      { nome: "Supino inclinado com barra", desc: "4x6-8" },
+      { nome: "Crucifixo reto com halteres (drop set)", desc: "3x12-15" },
+      { nome: "Crossover (cabos baixos)", desc: "3x15" },
+      { nome: "Arnold press", desc: "4x8-10" },
+      { nome: "Elevação lateral unilateral (polia)", desc: "3x12-15" },
+      { nome: "Tríceps francês unilateral + polia inversa (superset)", desc: "3x12" },
+      { nome: "Tríceps banco (peso no colo)", desc: "3x até falha" },
+      { nome: "Abdominal banco declinado com peso", desc: "3x20" },
+      { nome: "Prancha frontal com toques nos ombros", desc: "3x40s" },
+    ]},
+    { dia: "Sábado - Costas, Bíceps e Deltoide Posterior (variação)", exercicios: [
+      { nome: "Puxada neutra (triângulo ou pegada V)", desc: "4x10" },
+      { nome: "Remada baixa com triângulo", desc: "4x12" },
+      { nome: "Pull-over (halter ou cross)", desc: "3x12-15" },
+      { nome: "Remada lateral com halter", desc: "3x12" },
+      { nome: "Rosca scott (máquina ou banco inclinado)", desc: "3x10-12" },
+      { nome: "Rosca concentrada unilateral", desc: "3x12" },
+      { nome: "Rosca 21 (7+7+7)", desc: "2x (finalização)" },
+    ]},
+  ];
+
+  document.getElementById('gerarPdf').addEventListener('click', () => {
+    const doc = new jsPDF();
+    let y = 10;
+
+    doc.setFontSize(16);
+    doc.text("Treino Avancado de Hipertrofia - 6x por Semana", 105, y, null, null, 'center');
+    y += 10;
+
+    doc.setFontSize(12);
+    treino.forEach(diaTreino => {
+      doc.setTextColor(0, 0, 128);
+      doc.text(diaTreino.dia, 10, y);
+      y += 8;
+      doc.setTextColor(0, 0, 0);
+
+      diaTreino.exercicios.forEach(ex => {
+        const texto = `- ${ex.nome}: ${ex.desc}`;
+        let splitText = doc.splitTextToSize(texto, 190);
+        if (y + splitText.length * 7 > 280) { // quebra de página
+          doc.addPage();
+          y = 10;
+        }
+        doc.text(splitText, 10, y);
+        y += splitText.length * 7;
+      });
+      y += 5;
+    });
+
+    doc.save("Treino_Hipertrofia_Avancado_Julio.pdf");
+  });
+</script>
+</body>
+</html>
